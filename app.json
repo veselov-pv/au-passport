@@ -1,0 +1,7 @@
+{
+  "name": "Online Australian Passport Photo",
+  "description": "Online Australian Passport Photo",
+  "repository": "https://github.com/veselov-pv/au-passport",
+  "logo": "/public/node.svg",
+  "keywords": ["node", "express", "static"]
+}
