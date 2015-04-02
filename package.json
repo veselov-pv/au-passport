@@ -10,7 +10,8 @@
     "express": "~4.9.x"
   },
   "engines": {
-    "node": "0.10.x"
+    "node": "0.10.x",
+    "cors": "*"
   },
   "repository": {
     "type": "git",
