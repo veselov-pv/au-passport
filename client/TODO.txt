@@ -2,10 +2,12 @@
 
 	Limit ajax time (for example google font loading time)
 
+	Templating
+
+	Rename html files
+
 
 ---- Header ----
-
-	header template  (at all templating)
 
 	Menu btn hover styles (in mobile view too)
 
