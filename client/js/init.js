@@ -20,7 +20,7 @@
 				speed: 4,
 				fadeIn: true,
 				fadeDelay: 250
-			},
+			}
 
 	};
 
@@ -31,8 +31,8 @@
 			'wide':		{ range: '-1680', href: 'css/style-wide.css', containers: 1200 },
 			'normal':	{ range: '-1280', href: 'css/style-normal.css', containers: '100%', grid: { gutters: 36 } },
 			'narrow':	{ range: '-960', href: 'css/style-narrow.css', grid: { gutters: 32 } },
-			'narrower': { range: '-840', href: 'css/style-narrower.css', containers: '100%!', grid: { collapse: true } },
-			'mobile':	{ range: '-736', href: 'css/style-mobile.css', grid: { gutters: 20 }, viewport: { scalable: false } }
+			/*'narrower': { range: '-840', href: 'css/style-narrower.css', containers: '100%!', grid: { collapse: true } },*/
+			'mobile':	{ range: '-840', href: 'css/style-mobile.css', grid: { gutters: 20 }, viewport: { scalable: false } }
 		},
 		plugins: {
 			layers: {
@@ -99,12 +99,12 @@
 			}
 
 		// Dropdowns.
-			$('#nav > ul').dropotron({
+			/*$('#nav > ul').dropotron({
 				mode: 'fade',
 				speed: 350,
 				noOpenerFade: true,
 				alignment: 'center'
-			});
+			});*/
 
 		// Scrolly links.
 			$('.scrolly').scrolly();

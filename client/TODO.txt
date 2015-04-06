@@ -1,0 +1,78 @@
+<<<<<<<<   COMMON   >>>>>>>
+
+	Limit ajax time (for example google font loading time)
+
+
+---- Header ----
+
+	header template  (at all templating)
+
+	Menu btn hover styles (in mobile view too)
+
+?	Menu styles for narrow screen (many elements)
+	- restyle menu btn show for more wide screen
+	Done - init.js - skel.init
+
+
+---- Footer ----
+
+	Social btns href
+
+?	All right reserved
+
+	Add link to my dev
+
+
+
+<<<<<<<<   HOME page   >>>>>>>
+
+	Order now” button on the “Home” webpage
+
+
+
+<<<<<<<<   ORDER page   >>>>>>>
+
+?	Description of how to upload photo
+
+	"Browse" btn to select and upload photo (mobile functionality too)
+
+?	(similar style or not)
+	Confirmation of success operation
+	Error message for non-standard image file or unsuccessful upload
+
+?	Check photo resolution (min width/height)  ==>  Confirmation(Error) if needed
+
+	Auto load Edit page on success
+
+
+
+<<<<<<<<   EDIT page   >>>>>>>
+
+	Get Australian Passport Office requirements
+
+	Lib for edit photo (mobile functionality too)
+
+	Automatically orientation by EXIF meta data (if exists)
+
+	"Add to cart" btn for complete action
+
+	"Back" btn for back to Order page (if face on photo is not able to fit by requirements )
+
+?	Check photo resolution (min width/height)  ==>  Confirmation(Error) with error information and tips if needed
+
+?	UC04 - Normal Flow - point 4. 150mm x 100mm image creation by browser.
+
+?	150x100mm less then 4 photos width ! (3 + remaining boxes for company logo) - check Australian Passport Office requirements for photo scale
+
+?	Show 4x2 grid with photos and company logo(s) all time or in the end of editing
+
+?	White photo borders for cut them
+
+?	Company logo
+
+	Visual Guidelines for face
+
+	Temporarily showing is not enough - btn "Ok" or btn "Go to Shopping Card"
+
+
+?	Shopping Cart ???  what is it? Page or slide/menu block (mobile functionality too???) - investigate other sites
