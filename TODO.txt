@@ -1,5 +1,11 @@
 <<<<<<<<   COMMON   >>>>>>>
 
+	requestHandlers and router in node.js
+
+	replace all 'AuPhoto'
+
+	a prestyle ( slow applying styles in mobile view )
+
 	Limit ajax time (for example google font loading time)
 
 	Templating
