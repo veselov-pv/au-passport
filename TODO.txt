@@ -1,5 +1,7 @@
 <<<<<<<<   COMMON   >>>>>>>
 
+	localize fonts
+
 	requestHandlers and router in node.js
 
 	replace all 'AuPhoto'
@@ -8,19 +10,18 @@
 
 	Limit ajax time (for example google font loading time)
 
-	Templating
+#	Templating
 
-	Rename html files
+#	Rename html files
 
 
 ---- Header ----
 
 	Menu btn hover styles (in mobile view too)
 
-?	Menu styles for narrow screen (many elements)
-	- restyle menu btn show for more wide screen
-	Done - init.js - skel.init
-
+#	Menu styles for narrow screen (many elements)
+#	- restyle menu btn show for more wide screen
+#	Done: init.js - skel.init
 
 ---- Footer ----
 
