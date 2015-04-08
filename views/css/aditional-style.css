@@ -9,10 +9,19 @@
 
 .upload-wrapper input[type="file"] {
 	position: absolute;
-	right: 0;
+	width: 100%;
 	top: 0;
 	bottom: 0;
+	right: 0;
+	left: 0;
 	padding: 0;
 	opacity: 0;
 	filter: alpha(opacity=0);
+	cursor: pointer;
+}
+
+.upload-file-destination {
+	border: none;
+	border-radius: 0.4em;
+	padding: 0 0.4em;
 }
