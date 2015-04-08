@@ -299,6 +299,11 @@
 
 			}
 
+		/* upload set behaviour */
+		$("#uploadFileInput").on("change", function () {
+			$("#uploadFileDestination").val(this.value);
+		});
+
 	});
 
 })(jQuery);

@@ -1,0 +1,18 @@
+/*********************************************************************************/
+/* Special photo site style                                                      */
+/*********************************************************************************/
+
+.upload-wrapper {
+	position: relative;
+	overflow: hidden;
+}
+
+.upload-wrapper input[type="file"] {
+	position: absolute;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	padding: 0;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
