@@ -1,6 +1,7 @@
 <<<<<<<<   COMMON   >>>>>>>
 
-	localize fonts
+#	localize fonts
+#	(loading fixed by https)
 
 	non-blocked requestHandlers and router in node.js
 
@@ -23,9 +24,15 @@
 #	- restyle menu btn show for more wide screen
 #	Done: init.js - skel.init
 
+
+---- Main part ----
+
+	Articles content
+
+
 ---- Footer ----
 
-	Social btns href
+?	Social btns href
 
 ?	All right reserved
 
@@ -35,7 +42,7 @@
 
 <<<<<<<<   HOME page   >>>>>>>
 
-	Order now” button on the “Home” webpage
+#	"Order now” button on the “Home” webpage
 
 
 
@@ -81,7 +88,6 @@
 
 	Visual Guidelines for face
 
-	Temporarily showing is not enough - btn "Ok" or btn "Go to Shopping Card"
-
+?	Temporarily showing is not enough - btn "Ok" or btn "Go to Shopping Card"
 
 ?	Shopping Cart ???  what is it? Page or slide/menu block (mobile functionality too???) - investigate other sites
