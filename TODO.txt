@@ -1,15 +1,15 @@
 <<<<<<<<   COMMON   >>>>>>>
 
-#	localize fonts
-#	(loading fixed by https)
-
 	non-blocked requestHandlers and router in node.js
 
 	replace all 'AuPhoto'
 
-	a prestyle ( slow applying styles in mobile view )
+	a prestyle ( a href style, elements position)
 
 	Limit ajax time (for example google font loading time)
+
+#	localize fonts
+#	(loading fixed by https)
 
 #	Templating
 

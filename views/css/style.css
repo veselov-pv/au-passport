@@ -1200,6 +1200,7 @@
 			-o-transition: opacity 0.75s ease-in-out;
 			-ms-transition: opacity 0.75s ease-in-out;
 			transition: opacity 0.75s ease-in-out;
+			vertical-align: top;
 		}
 
 			.carousel article.loading
