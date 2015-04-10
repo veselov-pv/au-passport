@@ -1091,6 +1091,7 @@
 		overflow: hidden;
 		padding: 2em 0 2em 0;
 		margin-bottom: 0;
+		background-image: linear-gradient(to bottom, #F0F4F4 0%, #FFF 100%);
 	}
 
 		.carousel .forward,

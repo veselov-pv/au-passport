@@ -44,6 +44,10 @@
 
 #	"Order now” button on the “Home” webpage
 
+	Carousel sections stretch vertically
+
+	Cross browser carousel background image gradient
+
 
 
 <<<<<<<<   ORDER page   >>>>>>>
