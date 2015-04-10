@@ -2,7 +2,7 @@
 
 	non-blocked requestHandlers and router in node.js
 
-	replace all 'AuPhoto'
+#	replace all 'AuPhoto'
 
 	a prestyle ( a href style, elements position)
 
