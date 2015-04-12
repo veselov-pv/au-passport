@@ -299,9 +299,63 @@
 
 			}
 
+		/* additional js */
+
+		var LS_DATA_NAME = 'australianPassportPhotoData';
+
+		function isValidMimeTipe (file) {
+			var validMimeTypes = ['image/png', 'image/jpeg', 'image/pjpeg', 'image/tiff', 'image/x-tiff', 'image/x-windows-bmp', 'image/bmp', 'image/gif'];
+			return $.inArray(file.type, validMimeTypes) >= 0;
+		}
+
+		function isJson(str) {
+			try {
+				JSON.parse(str);
+			} catch (e) {
+				return false;
+			}
+			return true;
+		}
+
+		function saveImage(uploadInput){
+			var FR= new FileReader();
+			FR.onload = function(e) {
+				var defaultData = {images: []};
+				var lsData = localStorage.getItem(LS_DATA_NAME);
+				var data = isJson(lsData) ? JSON.parse(lsData) : defaultData;
+				data.images.push(e.target.result);
+				localStorage.setItem(LS_DATA_NAME, JSON.stringify(data));
+				showNotification('success', 'Photo uploaded successfully');
+				setTimeout(function () {
+					window.location = '/edit';
+				}, 2000);
+			};
+			FR.onerror = function () {
+				showNotification('error', 'Something went wrong. Please try again')
+			};
+			FR.readAsDataURL(uploadInput.files[0]);
+		}
+
+		function showNotification(className, notificationText){
+			var $notification = $('#uploadFileNotification');
+			$notification.removeClass('error', 'success');
+			$notification.addClass(className).html(notificationText).show();
+		}
+
+		function hideNotification(){
+			$('#uploadFileNotification').hide();
+		}
+
 		/* upload set behaviour */
-		$("#uploadFileInput").on("change", function () {
-			$("#uploadFileDestination").val(this.value);
+		$('#uploadFileInput').on('change', function () {
+			hideNotification();
+			if (!this.files || !this.files[0]) return;
+
+			if(isValidMimeTipe(this.files[0])) {
+				saveImage(this);
+			} else {
+				showNotification('error', 'Please upload TIF, JPG, PNG, GIF or BMP image');
+			}
 		});
 
 	});
