@@ -301,8 +301,6 @@
 
 		/* additional js */
 
-		var LS_DATA_NAME = 'australianPassportPhotoData';
-
 		function isValidMimeTipe (file) {
 			var validMimeTypes = ['image/png', 'image/jpeg', 'image/pjpeg', 'image/tiff', 'image/x-tiff', 'image/x-windows-bmp', 'image/bmp', 'image/gif'];
 			return $.inArray(file.type, validMimeTypes) >= 0;
@@ -310,6 +308,7 @@
 
 		function isJson(str) {
 			try {
+				if (str === '' || str === null || str === undefined) throw new Error();
 				JSON.parse(str);
 			} catch (e) {
 				return false;
@@ -317,28 +316,38 @@
 			return true;
 		}
 
+		var LS_DATA_NAME = 'australianPassportPhotoData';
+
+		function getAppData(){
+			var defaultData = {images: []};
+			var lsData = localStorage.getItem(LS_DATA_NAME);
+			return isJson(lsData) ? JSON.parse(lsData) : defaultData;
+		}
+
+		function setAppData(data) {
+			localStorage.setItem(LS_DATA_NAME, JSON.stringify(data));
+		}
+
 		function saveImage(uploadInput){
 			var FR= new FileReader();
 			FR.onload = function(e) {
-				var defaultData = {images: []};
-				var lsData = localStorage.getItem(LS_DATA_NAME);
-				var data = isJson(lsData) ? JSON.parse(lsData) : defaultData;
+				var data = getAppData();
 				data.images.push(e.target.result);
-				localStorage.setItem(LS_DATA_NAME, JSON.stringify(data));
+				setAppData(data);
 				showNotification('success', 'Photo uploaded successfully');
 				setTimeout(function () {
 					window.location = '/edit';
 				}, 2000);
 			};
 			FR.onerror = function () {
-				showNotification('error', 'Something went wrong. Please try again')
+				showNotification('error', 'Something went wrong. Please try again');
 			};
 			FR.readAsDataURL(uploadInput.files[0]);
 		}
 
 		function showNotification(className, notificationText){
 			var $notification = $('#uploadFileNotification');
-			$notification.removeClass('error', 'success');
+			$notification.removeClass('error success');
 			$notification.addClass(className).html(notificationText).show();
 		}
 
@@ -357,6 +366,21 @@
 				showNotification('error', 'Please upload TIF, JPG, PNG, GIF or BMP image');
 			}
 		});
+
+		$('#imageEditContainer > img').attr('src', getAppData().images[0])
+			.cropper({
+				aspectRatio: 4 / 5,
+				preview: ".img-preview",
+				crop: function (data) {
+					/*$("#dataX").val(Math.round(data.x));
+					 $("#dataY").val(Math.round(data.y));
+					 $("#dataHeight").val(Math.round(data.height));
+					 $("#dataWidth").val(Math.round(data.width));
+					 $("#dataRotate").val(Math.round(data.rotate));*/
+				}
+			});
+
+
 
 	});
 

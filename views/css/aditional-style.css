@@ -38,3 +38,21 @@
 	background-color: #A2FF9B;
 }
 
+.cropper-crop-box:before, .cropper-crop-box:after {
+	position: absolute;
+	content: '';
+	background-color: #0018FF;
+	width: 30%;
+	height: 5%;
+	filter: alpha(opacity=50);
+	opacity: 0.5;
+	left: 35%;
+}
+
+.cropper-crop-box:before {
+	top: 10%;
+}
+
+.cropper-crop-box:after {
+	top: 80%;
+}
