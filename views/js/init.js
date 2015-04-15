@@ -368,16 +368,8 @@
 		});
 
 		$('#imageEditContainer > img').attr('src', getAppData().images[0])
-			.cropper({
-				aspectRatio: 4 / 5,
-				preview: ".img-preview",
-				crop: function (data) {
-					/*$("#dataX").val(Math.round(data.x));
-					 $("#dataY").val(Math.round(data.y));
-					 $("#dataHeight").val(Math.round(data.height));
-					 $("#dataWidth").val(Math.round(data.width));
-					 $("#dataRotate").val(Math.round(data.rotate));*/
-				}
+			.Jcrop({
+				aspectRatio: 4 / 5
 			});
 
 
