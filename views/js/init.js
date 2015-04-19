@@ -367,12 +367,16 @@
 			}
 		});
 
-		$('#imageEditContainer > img').attr('src', getAppData().images[0])
-			.Jcrop({
-				aspectRatio: 4 / 5
-			});
-
-
+		skel.on('ready', function () {
+			setTimeout(function(){
+				$('#passportImage')
+					.attr('src', getAppData().images[0])
+					.Jcrop({
+						aspectRatio: 4 / 5,
+						boxWidth: $('.image-edit-container').width()
+					});
+			}, 200);
+		});
 
 	});
 

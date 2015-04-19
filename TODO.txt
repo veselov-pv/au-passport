@@ -68,6 +68,8 @@
 
 <<<<<<<<   EDIT page   >>>>>>>
 
+	remove jcrop init setTimeout (for waiting skel complete dom/css render)
+
 	Get Australian Passport Office requirements
 
 	Lib for edit photo (mobile functionality too)

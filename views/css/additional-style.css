@@ -45,6 +45,25 @@
 	margin-right: -15px;
 }
 
+.passport-image-wrapper {
+	overflow: hidden;
+}
+
+.image-edit-container {
+	max-width: 500px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+
+.image-edit-container .add-to-cart-btn {
+	margin-top: 10px;
+}
+
+.jcrop-holder {
+	margin: 0 auto;
+}
+
 .jcrop-photo-wrapper:before, .jcrop-photo-wrapper:after {
 	content: '';
 	position: absolute;
