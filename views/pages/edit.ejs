@@ -6,9 +6,18 @@
 -->
 <html>
 	<head>
+		<% var beforeInitExtendedScripts = '' +
+				'<script src="../ext/javascript-load-image/js/load-image.js"></script>' +
+				'<script src="../ext/javascript-load-image/js/load-image-ios.js"></script>' +
+				'<script src="../ext/javascript-load-image/js/load-image-orientation.js"></script>' +
+				'<script src="../ext/javascript-load-image/js/load-image-meta.js"></script>' +
+				'<script src="../ext/javascript-load-image/js/load-image-exif.js"></script>' +
+				'<script src="../ext/javascript-load-image/js/load-image-exif-map.js"></script>' +
+				'<script src="../ext/jcrop/jquery.Jcrop.js"></script>' %>
+		<% var extendedStyles = '<link rel="stylesheet" href="../ext/jcrop/jquery.Jcrop.css"/>' %>
 		<% include ../partials/head.ejs %>
 	</head>
-	<body class="no-sidebar">
+	<body class="no-sidebar edit">
 
 		<!-- Header -->
 		<% include ../partials/header.ejs %>

@@ -45,7 +45,7 @@
 					position: 'top-left',
 					side: 'top',
 					width: '100%',
-					height: 250,
+					height: 298,
 					animation: 'pushY',
 					clickToHide: true,
 					swipeToHide: false,
@@ -301,7 +301,7 @@
 
 		/* additional js */
 
-		function isValidMimeTipe (file) {
+		function isValidMimeTipe(file) {
 			var validMimeTypes = ['image/png', 'image/jpeg', 'image/pjpeg', 'image/tiff', 'image/x-tiff', 'image/x-windows-bmp', 'image/bmp', 'image/gif'];
 			return $.inArray(file.type, validMimeTypes) >= 0;
 		}
@@ -318,7 +318,7 @@
 
 		var LS_DATA_NAME = 'australianPassportPhotoData';
 
-		function getAppData(){
+		function getAppData() {
 			var defaultData = {images: []};
 			var lsData = localStorage.getItem(LS_DATA_NAME);
 			return isJson(lsData) ? JSON.parse(lsData) : defaultData;
@@ -328,9 +328,9 @@
 			localStorage.setItem(LS_DATA_NAME, JSON.stringify(data));
 		}
 
-		function saveImage(uploadInput){
-			var FR= new FileReader();
-			FR.onload = function(e) {
+		function saveImage(uploadInput) {
+			var FR = new FileReader();
+			FR.onload = function (e) {
 				var data = getAppData();
 				data.images.push(e.target.result);
 				setAppData(data);
@@ -345,13 +345,13 @@
 			FR.readAsDataURL(uploadInput.files[0]);
 		}
 
-		function showNotification(className, notificationText){
+		function showNotification(className, notificationText) {
 			var $notification = $('#uploadFileNotification');
 			$notification.removeClass('error success');
 			$notification.addClass(className).html(notificationText).show();
 		}
 
-		function hideNotification(){
+		function hideNotification() {
 			$('#uploadFileNotification').hide();
 		}
 
@@ -360,23 +360,31 @@
 			hideNotification();
 			if (!this.files || !this.files[0]) return;
 
-			if(isValidMimeTipe(this.files[0])) {
+			if (isValidMimeTipe(this.files[0])) {
 				saveImage(this);
 			} else {
 				showNotification('error', 'Please upload TIF, JPG, PNG, GIF or BMP image');
 			}
 		});
 
-		skel.on('ready', function () {
-			setTimeout(function(){
-				$('#passportImage')
-					.attr('src', getAppData().images[0])
-					.Jcrop({
-						aspectRatio: 4 / 5,
-						boxWidth: $('.image-edit-container').width()
-					});
-			}, 200);
-		});
+
+		// Edit page
+
+		if ($body.hasClass('edit')) {
+
+			skel.on('ready', function () {
+				setTimeout(function () {
+					$('#passportImage')
+						.attr('src', getAppData().images[0])
+						.Jcrop({
+							aspectRatio: 4 / 5,
+							boxWidth: $('.image-edit-container').width()
+						});
+				}, 200);
+			});
+
+
+		}
 
 	});
 

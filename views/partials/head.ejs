@@ -2,6 +2,7 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!--[if lte IE 8]><script src="../css/ie/html5shiv.js"></script><![endif]-->
 <script src="../js/jquery.min.js"></script>
 <script src="../js/jquery.dropotron.min.js"></script>
@@ -9,7 +10,7 @@
 <script src="../js/jquery.onvisible.min.js"></script>
 <script src="../js/skel.min.js"></script>
 <script src="../js/skel-layers.min.js"></script>
-<script src="../ext/jcrop/jquery.Jcrop.js"></script>
+<%- (typeof beforeInitExtendedScripts !== 'undefined') ? beforeInitExtendedScripts : '' %>
 <script src="../js/init.js"></script>
 <noscript>
 	<link rel="stylesheet" href="../css/skel.css" />
@@ -17,6 +18,6 @@
 	<link rel="stylesheet" href="../css/style-desktop.css" />
 	<link rel="stylesheet" href="../css/style-noscript.css" />
 </noscript>
-<link rel="stylesheet" href="../ext/jcrop/jquery.Jcrop.css"/>
+<%- (typeof extendedStyles !== 'undefined') ? extendedStyles : '' %>
 <link rel="stylesheet" href="../css/additional-style.css" />
 <!--[if lte IE 8]><link rel="stylesheet" href="../css/ie/v8.css" /><![endif]-->
