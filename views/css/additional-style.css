@@ -50,6 +50,8 @@
 }
 
 .image-edit-container {
+	max-width: 520px;
+	margin: 0 auto;
 	text-align: center;
 }
 
@@ -59,9 +61,7 @@
 }
 
 .image-container {
-	max-width: 500px;
-	margin: 0 auto;
-	padding: 10px;
+	margin: 10px;
 }
 
 .jcrop-holder {
