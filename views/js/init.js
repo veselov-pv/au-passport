@@ -329,20 +329,39 @@
 		}
 
 		function saveImage(uploadInput) {
-			var FR = new FileReader();
+			var appData = getAppData(),
+				file = uploadInput.files[0],
+				FR = new FileReader();
+
 			FR.onload = function (e) {
-				var data = getAppData();
-				data.images.push(e.target.result);
-				setAppData(data);
-				showNotification('success', 'Photo uploaded successfully');
-				setTimeout(function () {
-					window.location = '/edit';
-				}, 2000);
+				loadImage.parseMetaData(file, function (metaData) {
+					var imageData = {
+						'image64': e.target.result,
+						'options': {}
+					};
+
+					if (metaData.exif) {
+						var orientation = metaData.exif.get('Orientation');
+						if (orientation) {
+							imageData.options.orientation = orientation;
+						}
+					}
+
+					appData.images.push(imageData);
+					setAppData(appData);
+					showNotification('success', 'Photo uploaded successfully');
+					setTimeout(function () {
+						window.location = '/edit';
+					}, 2000);
+
+				});
 			};
+
 			FR.onerror = function () {
 				showNotification('error', 'Something went wrong. Please try again');
 			};
-			FR.readAsDataURL(uploadInput.files[0]);
+
+			FR.readAsDataURL(file);
 		}
 
 		function showNotification(className, notificationText) {
@@ -356,7 +375,16 @@
 		}
 
 		/* upload set behaviour */
-		$('#uploadFileInput').on('change', function () {
+		$('#uploadFileInput').on('change', function (e) {
+	/*		e.preventDefault();
+			e = e.originalEvent;
+			var target = e.dataTransfer || e.target,
+				file = target && target.files && target.files[0],
+				options = {
+					maxWidth: result.width(),
+					canvas: true
+				};
+*/
 			hideNotification();
 			if (!this.files || !this.files[0]) return;
 
@@ -374,12 +402,17 @@
 
 			skel.on('ready', function () {
 				setTimeout(function () {
-					$('#passportImage')
-						.attr('src', getAppData().images[0])
-						.Jcrop({
-							aspectRatio: 4 / 5,
-							boxWidth: $('.image-edit-container').width()
-						});
+					var $imageEditContainer = $('.image-edit-container');
+					loadImage(
+						getAppData().images[0].image64,
+						function(img){
+							$(img).prependTo($imageEditContainer).Jcrop({
+								aspectRatio: 4 / 5,
+								boxWidth: $imageEditContainer.width()
+							});
+						},
+						getAppData().images[0].options
+					);
 				}, 200);
 			});
 

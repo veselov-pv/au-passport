@@ -1,5 +1,7 @@
 <<<<<<<<   COMMON   >>>>>>>
 
+	rework condition adding partials
+
 	minify all
 
 	non-blocked requestHandlers and router in node.js
