@@ -402,13 +402,13 @@
 
 			skel.on('ready', function () {
 				setTimeout(function () {
-					var $imageEditContainer = $('.image-edit-container');
+					var $imageContainer = $('.image-container');
 					loadImage(
 						getAppData().images[0].image64,
 						function(img){
-							$(img).prependTo($imageEditContainer).Jcrop({
+							$(img).prependTo($imageContainer).Jcrop({
 								aspectRatio: 4 / 5,
-								boxWidth: $imageEditContainer.width()
+								boxWidth: $imageContainer.width()
 							});
 						},
 						getAppData().images[0].options
