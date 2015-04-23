@@ -402,8 +402,6 @@
 
 			skel.on('change', function () {
 				var $imageContainer = $('.image-container');
-				$imageContainer.addClass('invisible');
-				
 				loadImage(
 					getAppData().images[0].image64,
 					function (img) {
@@ -414,7 +412,7 @@
 								boxWidth: $imageContainer.width()
 							});
 							$imageContainer.removeClass('invisible');
-						}, 200);
+						}, 400);
 					},
 					getAppData().images[0].options
 				);
