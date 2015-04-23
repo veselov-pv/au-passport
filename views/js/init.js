@@ -405,14 +405,36 @@
 				loadImage(
 					getAppData().images[0].image64,
 					function (img) {
+						var jcrop_api;
 						$imageContainer.html(img);
 						setTimeout(function () {
 							$(img).Jcrop({
 								aspectRatio: 4 / 5,
 								boxWidth: $imageContainer.width()
+							}, function () {
+								jcrop_api = this;
 							});
 							$imageContainer.removeClass('invisible');
-						}, 400);
+							setTimeout(function(){
+								jcrop_api.destroy();
+								$(img).Jcrop({
+									aspectRatio: 4 / 5,
+									boxWidth: $imageContainer.width()
+								}, function () {
+									jcrop_api = this;
+								});
+
+								setTimeout(function(){
+									jcrop_api.destroy();
+									$(img).Jcrop({
+										aspectRatio: 4 / 5,
+										boxWidth: $imageContainer.width()
+									});
+								}, 200);
+							}, 200);
+						}, 200);
+
+
 					},
 					getAppData().images[0].options
 				);
