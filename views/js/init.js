@@ -401,7 +401,7 @@
 		if ($body.hasClass('edit')) {
 
 			skel.on('change', function () {
-
+				$imageContainer.addClass('invisible');
 				var $imageContainer = $('.image-container');
 				loadImage(
 					getAppData().images[0].image64,
