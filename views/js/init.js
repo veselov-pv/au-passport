@@ -400,20 +400,24 @@
 
 		if ($body.hasClass('edit')) {
 
-			skel.on('ready', function () {
-				setTimeout(function () {
-					var $imageContainer = $('.image-container');
-					loadImage(
-						getAppData().images[0].image64,
-						function(img){
-							$(img).prependTo($imageContainer).Jcrop({
+			skel.on('change', function () {
+
+				var $imageContainer = $('.image-container');
+				loadImage(
+					getAppData().images[0].image64,
+					function (img) {
+						$imageContainer.html(img);
+						setTimeout(function () {
+							$(img).Jcrop({
 								aspectRatio: 4 / 5,
 								boxWidth: $imageContainer.width()
 							});
-						},
-						getAppData().images[0].options
-					);
-				}, 200);
+							$imageContainer.removeClass('invisible');
+						}, 200);
+					},
+					getAppData().images[0].options
+				);
+
 			});
 
 

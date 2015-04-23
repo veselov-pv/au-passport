@@ -2,6 +2,10 @@
 /* Special photo site style                                                      */
 /*********************************************************************************/
 
+.invisible {
+	visibility: hidden;
+}
+
 .upload-wrapper {
 	position: relative;
 	overflow: hidden;
