@@ -395,6 +395,31 @@
 			}
 		});
 
+		function changeClbck() {
+			jcrop_api.destroy();
+			$(img).Jcrop({
+				aspectRatio: 4 / 5,
+				boxWidth: newValue
+			}, function () {
+				jcrop_api = this;
+			});
+		}
+
+		function setChangeWatcher(options) {
+			var previousValue = options.valueChecker(),
+				currentCheckNumber = 0;
+
+			function setNext() {
+				setTimeout(function () {
+					currentCheckNumber += 1;
+					var newValue = options.valueChecker();
+					if (previousValue != newValue) options.changeCallback();
+					if ( options.checkAmount && currentCheckNumber < checkAmount) setNext();
+				}, options.checkTimeout);
+			}
+
+			setNext();
+		}
 
 		// Edit page
 
@@ -405,31 +430,65 @@
 				loadImage(
 					getAppData().images[0].image64,
 					function (img) {
-						var jcrop_api;
+						var jcrop_api, imageContainerWidth;
 						$imageContainer.html(img);
+						var watcherOptions = {
+							valueChecker: function (){},
+							changeCallback: function (){},
+							checkTimeout: 100
+						};
+						setChangeWatcher(watcherOptions);
 						setTimeout(function () {
+							imageContainerWidth = $imageContainer.width();
 							$(img).Jcrop({
 								aspectRatio: 4 / 5,
-								boxWidth: $imageContainer.width()
+								boxWidth: imageContainerWidth
 							}, function () {
 								jcrop_api = this;
 							});
 							$imageContainer.removeClass('invisible');
 							setTimeout(function(){
-								jcrop_api.destroy();
-								$(img).Jcrop({
-									aspectRatio: 4 / 5,
-									boxWidth: $imageContainer.width()
-								}, function () {
-									jcrop_api = this;
-								});
-
-								setTimeout(function(){
+								if (imageContainerWidth != $imageContainer.width()) {
 									jcrop_api.destroy();
 									$(img).Jcrop({
 										aspectRatio: 4 / 5,
 										boxWidth: $imageContainer.width()
+									}, function () {
+										jcrop_api = this;
 									});
+								}
+								setTimeout(function () {
+									if (imageContainerWidth != $imageContainer.width()) {
+										jcrop_api.destroy();
+										$(img).Jcrop({
+											aspectRatio: 4 / 5,
+											boxWidth: $imageContainer.width()
+										}, function () {
+											jcrop_api = this;
+										});
+									}
+									setTimeout(function () {
+										if (imageContainerWidth != $imageContainer.width()) {
+											jcrop_api.destroy();
+											$(img).Jcrop({
+												aspectRatio: 4 / 5,
+												boxWidth: $imageContainer.width()
+											}, function () {
+												jcrop_api = this;
+											});
+										}
+										setTimeout(function () {
+											if (imageContainerWidth != $imageContainer.width()) {
+												jcrop_api.destroy();
+												$(img).Jcrop({
+													aspectRatio: 4 / 5,
+													boxWidth: $imageContainer.width()
+												}, function () {
+													jcrop_api = this;
+												});
+											}
+										}, 200);
+									}, 200);
 								}, 200);
 							}, 200);
 						}, 200);
