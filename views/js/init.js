@@ -318,10 +318,15 @@
 
 		var LS_DATA_NAME = 'australianPassportPhotoData';
 
+		function validateTemplateSchema () {
+			return true;
+		}
+
 		function getAppData() {
 			var defaultData = {images: []};
 			var lsData = localStorage.getItem(LS_DATA_NAME);
-			return isJson(lsData) ? JSON.parse(lsData) : defaultData;
+			var data = (isJson(lsData) && validateTemplateSchema()) ? JSON.parse(lsData) : defaultData;
+			return
 		}
 
 		function setAppData(data) {
