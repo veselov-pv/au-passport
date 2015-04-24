@@ -395,111 +395,70 @@
 			}
 		});
 
-		function changeClbck() {
-			jcrop_api.destroy();
-			$(img).Jcrop({
-				aspectRatio: 4 / 5,
-				boxWidth: newValue
-			}, function () {
-				jcrop_api = this;
-			});
-		}
-
-		function setChangeWatcher(options) {
-			var previousValue = options.valueChecker(),
+		function setChangeWatcher(o) {
+			var previousValue = o.valueChecker(),
 				currentCheckNumber = 0;
 
-			function setNext() {
+			(function setNextStep() {
 				setTimeout(function () {
 					currentCheckNumber += 1;
-					var newValue = options.valueChecker();
-					if (previousValue != newValue) options.changeCallback();
-					if ( options.checkAmount && currentCheckNumber < checkAmount) setNext();
-				}, options.checkTimeout);
-			}
-
-			setNext();
+					var newValue = o.valueChecker();
+					if (previousValue != newValue) {
+						o.changeCallback();
+						previousValue = newValue;
+					}
+					if ( o.checkAmount && currentCheckNumber < o.checkAmount) setNextStep();
+				}, o.checkTimeout);
+			})();
 		}
 
 		// Edit page
 
 		if ($body.hasClass('edit')) {
 
+			var jcrop_api;
+			var $imageContainer = $('.image-container');
+
+			function getImageContainerWidth() {
+				return $imageContainer.width();
+			}
+
+			function resetJcrop(img) {
+				if (jcrop_api) jcrop_api.destroy();
+				$(img).Jcrop(
+					{
+						aspectRatio: 4 / 5,
+						boxWidth: getImageContainerWidth()
+					},
+					function () {
+						jcrop_api = this;
+					}
+				);
+			}
+
+			function loadImageCallback (img) {
+				$imageContainer.html(img);
+				resetJcrop(img);
+
+				var watcherOptions = {
+					valueChecker: getImageContainerWidth,
+					changeCallback: function () {resetJcrop(img)},
+					checkTimeout: 100,
+					checkAmount: 10
+				};
+				setChangeWatcher(watcherOptions);
+
+				$imageContainer.removeClass('invisible');
+			}
+
 			skel.on('change', function () {
-				var $imageContainer = $('.image-container');
 				loadImage(
 					getAppData().images[0].image64,
-					function (img) {
-						var jcrop_api, imageContainerWidth;
-						$imageContainer.html(img);
-						var watcherOptions = {
-							valueChecker: function (){},
-							changeCallback: function (){},
-							checkTimeout: 100
-						};
-						setChangeWatcher(watcherOptions);
-						setTimeout(function () {
-							imageContainerWidth = $imageContainer.width();
-							$(img).Jcrop({
-								aspectRatio: 4 / 5,
-								boxWidth: imageContainerWidth
-							}, function () {
-								jcrop_api = this;
-							});
-							$imageContainer.removeClass('invisible');
-							setTimeout(function(){
-								if (imageContainerWidth != $imageContainer.width()) {
-									jcrop_api.destroy();
-									$(img).Jcrop({
-										aspectRatio: 4 / 5,
-										boxWidth: $imageContainer.width()
-									}, function () {
-										jcrop_api = this;
-									});
-								}
-								setTimeout(function () {
-									if (imageContainerWidth != $imageContainer.width()) {
-										jcrop_api.destroy();
-										$(img).Jcrop({
-											aspectRatio: 4 / 5,
-											boxWidth: $imageContainer.width()
-										}, function () {
-											jcrop_api = this;
-										});
-									}
-									setTimeout(function () {
-										if (imageContainerWidth != $imageContainer.width()) {
-											jcrop_api.destroy();
-											$(img).Jcrop({
-												aspectRatio: 4 / 5,
-												boxWidth: $imageContainer.width()
-											}, function () {
-												jcrop_api = this;
-											});
-										}
-										setTimeout(function () {
-											if (imageContainerWidth != $imageContainer.width()) {
-												jcrop_api.destroy();
-												$(img).Jcrop({
-													aspectRatio: 4 / 5,
-													boxWidth: $imageContainer.width()
-												}, function () {
-													jcrop_api = this;
-												});
-											}
-										}, 200);
-									}, 200);
-								}, 200);
-							}, 200);
-						}, 200);
-
-
-					},
+					loadImageCallback,
 					getAppData().images[0].options
 				);
 
 			});
-
 
 		}
 
