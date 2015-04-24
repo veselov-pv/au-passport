@@ -1,93 +1,119 @@
 /*********************************************************************************/
 /* Special photo site style                                                      */
 /*********************************************************************************/
-
 .invisible {
-	visibility: hidden;
+  visibility: hidden;
 }
 
 .upload-wrapper {
-	position: relative;
-	overflow: hidden;
+  position: relative;
+  overflow: hidden;
 }
 
 .upload-wrapper input[type="file"] {
-	position: absolute;
-	width: 100%;
-	top: 0;
-	bottom: 0;
-	right: 0;
-	left: 0;
-	padding: 0;
-	opacity: 0;
-	filter: alpha(opacity=0);
-	cursor: pointer;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  cursor: pointer;
 }
 
 .upload-file-notification {
-	display: none;
-	border: 1px transparent solid;
-	border-radius: 0.4em;
-	padding: 0 0.4em;
-	color: #483949;
+  display: none;
+  border: 1px transparent solid;
+  border-radius: 0.4em;
+  padding: 0 0.4em;
+  color: #483949;
 }
 
 .upload-file-notification.error {
-	border: 1px #FFAFAF solid;
-	background-color: #FFC7C7;
+  border: 1px #FFAFAF solid;
+  background-color: #FFC7C7;
 }
 
-.upload-file-notification.success  {
-	border: 1px #7EFA8E solid;
-	background-color: #A2FF9B;
+.upload-file-notification.success {
+  border: 1px #7EFA8E solid;
+  background-color: #A2FF9B;
 }
 
 .jcrop-handle.ord-se {
-	width: 20px;
-	height: 20px;
-	margin-bottom: -10px;
-	margin-right: -10px;
+  width: 20px;
+  height: 20px;
+  margin-bottom: -10px;
+  margin-right: -10px;
+}
+
+.button.disabled {
+  background: #AAA;
+  color: #EEE;
+  cursor: not-allowed;
 }
 
 .passport-image-wrapper {
-	overflow: hidden;
+  overflow: hidden;
 }
-
-.image-edit-container {
-	max-width: 520px;
-	margin: 0 auto;
-	text-align: center;
+.passport-image-wrapper .image-edit-container {
+  max-width: 520px;
+  margin: 0 auto;
+  text-align: center;
 }
-
-
-.image-edit-container .add-to-cart-btn {
-	margin-top: 20px;
+.passport-image-wrapper .image-edit-container .image-container {
+  margin: 10px;
 }
-
-.image-container {
-	margin: 10px;
+.passport-image-wrapper .image-edit-container .buttons-container {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-top: 20px;
+  overflow: hidden;
+}
+@-moz-document url-prefix() {
+  .passport-image-wrapper .image-edit-container .buttons-container {
+    width: 100%;
+    -moz-box-sizing: border-box;
+  }
+}
+.passport-image-wrapper .image-edit-container .buttons-container > .button {
+  width: 100%;
+  margin-left: 10px;
+}
+.passport-image-wrapper .image-edit-container .buttons-container > .button:first-child {
+  margin-left: 0;
 }
 
 .jcrop-holder {
-	margin: 0 auto;
+  margin: 0 auto;
 }
 
 .jcrop-photo-wrapper:before, .jcrop-photo-wrapper:after {
-	content: '';
-	position: absolute;
-	width: 30%;
-	height: 10%;
-	background-color: #008000;
-	opacity: 0.4;
-	z-index: 1;
-	left: 35%;
+  content: '';
+  position: absolute;
+  width: 30%;
+  height: 10%;
+  background-color: #008000;
+  opacity: 0.4;
+  z-index: 1;
+  left: 35%;
 }
 
 .jcrop-photo-wrapper:before {
-	top: 10%;
+  top: 10%;
 }
 
 .jcrop-photo-wrapper:after {
-	top: 80%;
+  top: 80%;
 }
-

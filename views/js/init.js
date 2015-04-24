@@ -318,15 +318,15 @@
 
 		var LS_DATA_NAME = 'australianPassportPhotoData';
 
-		function validateTemplateSchema () {
-			return true;
+		function isValidDataSchema (data) {
+			var parsedData = JSON.parse(data);
+			return parsedData.images && parsedData.images.length && typeof parsedData.images[0] == 'object' && parsedData.images[0].hasOwnProperty('image64');
 		}
 
 		function getAppData() {
 			var defaultData = {images: []};
 			var lsData = localStorage.getItem(LS_DATA_NAME);
-			var data = (isJson(lsData) && validateTemplateSchema()) ? JSON.parse(lsData) : defaultData;
-			return
+			return (isJson(lsData) && isValidDataSchema(lsData)) ? JSON.parse(lsData) : defaultData;
 		}
 
 		function setAppData(data) {
@@ -456,11 +456,30 @@
 				$imageContainer.removeClass('invisible');
 			}
 
+			function viewInit () {
+				// check if image exists
+				var $addToCardBtn = $('.buttons-container .add-to-cart-btn'),
+					$proposal = $('#proposal');
+				if (getAppData().images.length) {
+					$addToCardBtn.removeClass('disabled');
+					$addToCardBtn.removeAttr('title');
+				} else {
+					var orderProposal = 'You have no ordered photos.\nPlease go to Order page.';
+					$addToCardBtn.addClass('disabled');
+					$addToCardBtn.attr('title', orderProposal);
+					$proposal.html(orderProposal.replace(/\n/gim, '<br/>'));
+				}
+
+			}
+
 			skel.on('change', function () {
+				viewInit();
+				var appData = getAppData();
+				if (!appData.images.length) return;
 				loadImage(
-					getAppData().images[0].image64,
+					appData.images[0].image64,
 					loadImageCallback,
-					getAppData().images[0].options
+					appData.images[0].options
 				);
 
 			});

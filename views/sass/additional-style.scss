@@ -1,0 +1,116 @@
+/*********************************************************************************/
+/* Special photo site style                                                      */
+/*********************************************************************************/
+
+@import "compass";
+$debug-browser-support: true;
+$browser-minimum-versions: (ie: '10');
+
+@import "flex-mixins";
+
+.invisible {
+	visibility: hidden;
+}
+
+.upload-wrapper {
+	position: relative;
+	overflow: hidden;
+}
+
+.upload-wrapper input[type="file"] {
+	position: absolute;
+	width: 100%;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	padding: 0;
+	opacity: 0;
+	filter: alpha(opacity=0);
+	cursor: pointer;
+}
+
+.upload-file-notification {
+	display: none;
+	border: 1px transparent solid;
+	border-radius: 0.4em;
+	padding: 0 0.4em;
+	color: #483949;
+}
+
+.upload-file-notification.error {
+	border: 1px #FFAFAF solid;
+	background-color: #FFC7C7;
+}
+
+.upload-file-notification.success  {
+	border: 1px #7EFA8E solid;
+	background-color: #A2FF9B;
+}
+
+.jcrop-handle.ord-se {
+	width: 20px;
+	height: 20px;
+	margin-bottom: -10px;
+	margin-right: -10px;
+}
+
+.button.disabled {
+	background: #AAA;
+	color: #EEE;
+	cursor: not-allowed;
+}
+
+.passport-image-wrapper {
+	overflow: hidden;
+
+	.image-edit-container {
+		max-width: 520px;
+		margin: 0 auto;
+		text-align: center;
+
+		.image-container {
+			margin: 10px;
+		}
+
+		.buttons-container {
+			@include display_flex;
+			@include flex-direction_row;
+			margin-top: 20px;
+			overflow: hidden;
+
+			> .button {
+				width: 100%;
+				margin-left: 10px;
+
+				&:first-child {
+					margin-left: 0;
+				}
+			}
+		}
+	}
+}
+
+.jcrop-holder {
+	margin: 0 auto;
+}
+
+.jcrop-photo-wrapper:before, .jcrop-photo-wrapper:after {
+	content: '';
+	position: absolute;
+	width: 30%;
+	height: 10%;
+	background-color: #008000;
+	opacity: 0.4;
+	z-index: 1;
+	left: 35%;
+}
+
+.jcrop-photo-wrapper:before {
+	top: 10%;
+}
+
+.jcrop-photo-wrapper:after {
+	top: 80%;
+}
+
