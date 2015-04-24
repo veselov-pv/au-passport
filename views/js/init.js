@@ -459,15 +459,20 @@
 			function viewInit () {
 				// check if image exists
 				var $addToCardBtn = $('.buttons-container .add-to-cart-btn'),
-					$proposal = $('#proposal');
+					$goToOrderBtn = $('.buttons-container .go-to-order-btn'),
+					$proposal = $('#proposal'),
+					$imageEditInfo = $('.image-edit-info');
+
 				if (getAppData().images.length) {
 					$addToCardBtn.removeClass('disabled');
 					$addToCardBtn.removeAttr('title');
 				} else {
 					var orderProposal = 'You have no ordered photos.\nPlease go to Order page.';
+					$goToOrderBtn.html('Go to Order');
 					$addToCardBtn.addClass('disabled');
 					$addToCardBtn.attr('title', orderProposal);
 					$proposal.html(orderProposal.replace(/\n/gim, '<br/>'));
+					$imageEditInfo.hide();
 				}
 
 			}
